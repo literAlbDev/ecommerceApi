@@ -9,15 +9,23 @@ class Order_Details extends Model
 {
     use HasFactory;
 
-     // Many-to-One relation with Order
-     public function order()
-     {
-         return $this->belongsTo(Order::class);
-     }
- 
-     // Many-to-One relation with Product
-     public function product()
-     {
-         return $this->belongsTo(Product::class);
-     }
+    protected $fillable = [
+        'id',
+        'order_id',
+        'product_id',
+        'quantity',
+        'price',
+    ];
+
+    // Many-to-One relation with Order
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    // Many-to-One relation with Product
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

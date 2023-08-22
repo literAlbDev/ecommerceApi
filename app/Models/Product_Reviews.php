@@ -9,15 +9,23 @@ class Product_Reviews extends Model
 {
     use HasFactory;
 
-     // Many-to-One relation with User
-     public function user()
-     {
-         return $this->belongsTo(User::class);
-     }
- 
-     // Many-to-One relation with Product
-     public function product()
-     {
-         return $this->belongsTo(Product::class);
-     }
+    protected $fillable = [
+        'id',
+        'product_id',
+        'user_id',
+        'review',
+        'rating',
+    ];
+
+    // Many-to-One relation with User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // Many-to-One relation with Product
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

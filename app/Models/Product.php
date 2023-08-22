@@ -9,6 +9,16 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id',
+        'category_id',
+        'name',
+        'description',
+        'price',
+        'image',
+        'stock',
+    ];
+
     // One-to-Many relation with OrderDetails
     public function orderDetails()
     {
