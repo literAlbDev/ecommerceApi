@@ -25,7 +25,7 @@ Route::prefix('v1')->group(function () {
         //Users routes
         Route::delete("users/logout", [UserController::class, "logout"]);
         Route::apiResource("users", UserController::class)
-            ->except(["index", "store"]);
+            ->except(["index", "store"])->name("show", "me");
 
         //Shipping adresses routes
         Route::apiResource("addresses", Shipping_AddressesController::class)
