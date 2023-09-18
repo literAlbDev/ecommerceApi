@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\V1;
 
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Product_ReviewsResource extends JsonResource
@@ -19,7 +20,7 @@ class Product_ReviewsResource extends JsonResource
             "attributes" => [
                 "review" => $this->review,
                 "rating" => $this->rating,
-                "user" => UserResource::make($this->user),
+                "user" => $this->user->name,
             ]
         ];
     }
