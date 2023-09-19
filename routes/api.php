@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\V1\CategoryController;
+use App\Http\Controllers\API\V1\ProductController;
 use App\Http\Controllers\API\V1\Shipping_AddressesController;
 use App\Http\Controllers\API\V1\UserController;
 use App\Http\Controllers\API\V1\WishlistController;
