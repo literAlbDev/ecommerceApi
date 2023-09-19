@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\V1\Shipping_AddressesController;
 use App\Http\Controllers\API\V1\UserController;
+use App\Http\Controllers\API\V1\WishlistController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,7 +35,7 @@ Route::prefix('v1')->group(function () {
             ->except(["show, index"]);
 
         //Whishlist routes
-        Route::apiResource("whishlist", WhishlistController::class)
+        Route::apiResource("whishlist", WishlistController::class)
             ->except(["show", "update"]);
 
         //Categories routes
