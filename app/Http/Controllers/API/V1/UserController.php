@@ -102,7 +102,7 @@ class UserController extends Controller
             'password' => $request->password ? Hash::make($request->password) : $request->user()->password,
         ]);
 
-        return $update_result ? UserResource::make($request->user()) : response()->json(['message' => 'an error occured']);;
+        return $update_result ? UserResource::make($request->user()) : response()->json(['message' => 'an error occured'], 500);
     }
 
     /**
@@ -116,6 +116,6 @@ class UserController extends Controller
         $this->logout($request);
 
         $delete_result = $request->user()->delete();
-        return $delete_result ? UserResource::make($request->user()) : response()->json(['message' => 'an error occured']);
+        return $delete_result ? UserResource::make($request->user()) : response()->json(['message' => 'an error occured'], 500);
     }
 }
