@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\V1\Shipping_AddressesController;
 use App\Http\Controllers\API\V1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
