@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 class Shipping_AddressesController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created shipping address
+     * and assign it to the current user
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -44,7 +45,7 @@ class Shipping_AddressesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified shipping address.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -82,7 +83,7 @@ class Shipping_AddressesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove shipping address from current user.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
