@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources\API\V1;
 
-use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Product_ReviewsResource extends JsonResource
