@@ -5,7 +5,7 @@ namespace App\Http\Resources\API\V1;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class WhishlistResource extends JsonResource
+class WishlistResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
