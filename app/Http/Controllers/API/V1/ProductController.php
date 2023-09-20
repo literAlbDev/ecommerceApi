@@ -16,7 +16,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return ProductResource::collection(Product::all());
+        $products = Product::all();
+        if(!$products)
+            return response()->json(['message' => 'no products'], 404);
+
+        return ProductResource::collection($products);
     }
 
     /**

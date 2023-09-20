@@ -17,7 +17,11 @@ class WishlistController extends Controller
      */
     public function index(Request $request)
     {
-        return WishlistResource::collection($request->user()->wishlist);
+        $wishlist = $request->user()->wishlist;
+        if(!$wishlist)
+            return response()->json(['message' => 'no product in your wishlist'], 404);
+
+        return WishlistResource::collection($wishlist);
     }
 
     /**

@@ -16,7 +16,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return CategoryResource::collection(Category::all());
+        $category = Category::all();
+        if(!$category)
+            return response()->json(['message' => 'no category'], 404);
+
+        return CategoryResource::collection($category);
     }
 
     /**
