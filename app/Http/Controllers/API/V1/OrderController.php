@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     /**
-     * Display all wishlist products of the current user
+     * Display all orders of the current user
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -26,7 +26,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Make a new order with its details and store it.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -56,7 +56,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Remove an order of the current user
+     * Remove an order from the current user
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id

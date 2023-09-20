@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class Order_DetailsController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Add new order details and update product stock
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
