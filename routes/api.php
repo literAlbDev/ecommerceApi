@@ -24,15 +24,24 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
 
     //no-login required routes
-    Route::post("users/login", [UserController::class, "login"]);
-    Route::post("users/signup", [UserController::class, "signup"]);
+    Route::post("user/login", [UserController::class, "login"]);
+    Route::post("user/signup", [UserController::class, "signup"]);
+
+    //Categories routes
+    Route::apiResource("categories", CategoryController::class)
+        ->only(["index", "show"]);
+
+    //Products routes
+    Route::apiResource("products", ProductController::class)
+        ->only(["index", "show"]);
 
     //login required routes
     Route::middleware('auth:sanctum')->group(function () {
         //Users routes
-        Route::delete("users/logout", [UserController::class, "logout"]);
-        Route::apiResource("users", UserController::class)
-            ->except(["index", "store"])->name("show", "me");
+        Route::delete("user/logout", [UserController::class, "logout"]);
+        Route::get("user/me", [UserController::class, "show"]);
+        Route::put("user/update", [UserController::class, "update"]);
+        Route::delete("user/delete", [UserController::class, "destroy"]);
 
         //Shipping adresses routes
         Route::apiResource("addresses", Shipping_AddressesController::class)
@@ -41,14 +50,6 @@ Route::prefix('v1')->group(function () {
         //Whishlist routes
         Route::apiResource("whishlist", WishlistController::class)
             ->except(["show", "update"]);
-
-        //Categories routes
-        Route::apiResource("categories", CategoryController::class)
-            ->only(["index", "show"]);
-
-        //Products routes
-        Route::apiResource("products", ProductController::class)
-            ->only(["index", "show"]);
 
         //Products' reviews routes
         Route::apiResource("products/reviews", Product_ReviewsController::class)
