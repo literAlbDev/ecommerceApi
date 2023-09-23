@@ -33,7 +33,7 @@ class UserController extends Controller
             ]);
         }
 
-        return ["message" => $user->createToken($request->device_name)->plainTextToken];
+        return ["token" => $user->createToken($request->device_name)->plainTextToken];
     }
 
     /**
