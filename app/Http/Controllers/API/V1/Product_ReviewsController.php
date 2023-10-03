@@ -18,9 +18,9 @@ class Product_ReviewsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_id' => 'reqiured|exists:products,id',
-            'review'     => 'reqiured|string',
-            'rating'     => 'reqiured|integer|min:1|max:5,',
+            'product_id' => 'required|exists:products,id',
+            'review'     => 'required|string',
+            'rating'     => 'required|integer|min:1|max:5,',
 
         ]);
 
