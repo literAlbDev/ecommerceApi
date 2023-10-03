@@ -18,7 +18,7 @@ class WishlistResource extends JsonResource
         return [
             "id" => $this->id,
             "attributes" => [
-                "products" => ProductResource::collection(User::find($request->user()->id)->whishlist),
+                "products" => ProductResource::collection($request->user()->wishlist),
             ]
         ];
     }

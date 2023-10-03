@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\API\V1;
 
-use App\Models\Product;
+use App\Models\Wishlist;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
@@ -37,7 +37,7 @@ class ProductResource extends JsonResource
                 "price" => $this->price,
                 "stock" => $this->stock,
                 "description" => $this->description,
-                "inWishList" => Product::find($this->id)->wishlistUsers->contains($request->user()) ? true : false,
+                "inWishList" => Wishlist::where("product_id", "=", $this->id)->where("user_id", "=", auth()->user()->id)->get()->isNotEmpty() ? true : false,
                 "reviews" => Product_ReviewsResource::collection($this->reviews),
             ]
         ];

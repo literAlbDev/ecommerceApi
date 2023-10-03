@@ -34,21 +34,24 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $total = 0;
-        $new_order = Order::create();
+        $new_order = Order::create([
+            'user_id' => $request->user()->id,
+            'total' => 0,
+        ]);
 
         foreach ($request->products as $product) {
             $request->merge([
                 'order_id' => $new_order->id,
-                'product_id' => $product['id'],
+                'product_id' => $product['data']['id'],
                 'quantity' => $product['quantity'],
+                'price' => $product['data']['attributes']['price'],
             ]);
             (new Order_DetailsController)->store($request);
 
-            $total += Product::find($product['id'])->price;
+            $total += Product::find($product['data']['id'])->price;
         }
 
         $new_order->update([
-            'user_id' => $request->user()->id,
             'total' => $total,
         ]);
 

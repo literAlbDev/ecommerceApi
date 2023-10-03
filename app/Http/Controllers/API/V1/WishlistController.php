@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\API\V1\ProductResource;
 use App\Http\Resources\API\V1\WishlistResource;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class WishlistController extends Controller
         if(!$wishlist)
             return response()->json(['message' => 'no product in your wishlist'], 404);
 
-        return WishlistResource::collection($wishlist);
+        return ProductResource::collection($wishlist);
     }
 
     /**
@@ -36,12 +37,9 @@ class WishlistController extends Controller
             "product_id" => "required|exists:products,id",
         ]);
 
-        $new_wishlist_product = Wishlist::create([
-            "user_id" => $request->user()->id,
-            "product_id" => $request->product_id,
-        ]);
+        $request->user()->wishlist()->attach($request->product_id);
 
-        return WishlistResource::make($new_wishlist_product);
+        return ProductResource::collection($request->user()->wishlist);
     }
 
     /**
@@ -57,7 +55,8 @@ class WishlistController extends Controller
         if (!$wishlist_product)
             return response()->json(['message' => 'in your wishlist no product with id ' . $id], 404);
 
-        $delete_result = $wishlist_product->delete();
-        return $delete_result ? WishlistResource::make($wishlist_product) : response()->json(['message' => 'an error occured'], 500);
+
+        $delete_result = $request->user()->wishlist()->detach($id);
+        return $delete_result ? ProductResource::collection($request->user()->wishlist) : response()->json(['message' => 'an error occured'], 500);
     }
 }

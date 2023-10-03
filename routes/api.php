@@ -27,16 +27,16 @@ Route::prefix('v1')->group(function () {
     Route::post("user/login", [UserController::class, "login"]);
     Route::post("user/signup", [UserController::class, "signup"]);
 
-    //Categories routes
-    Route::apiResource("categories", CategoryController::class)
-        ->only(["index", "show"]);
-
-    //Products routes
-    Route::apiResource("products", ProductController::class)
-        ->only(["index", "show"]);
-
     //login required routes
     Route::middleware('auth:sanctum')->group(function () {
+        //Categories routes
+        Route::apiResource("categories", CategoryController::class)
+            ->only(["index", "show"]);
+
+        //Products routes
+        Route::apiResource("products", ProductController::class)
+            ->only(["index", "show"]);
+
         //Users routes
         Route::delete("user/logout", [UserController::class, "logout"]);
         Route::get("user/me", [UserController::class, "show"]);
