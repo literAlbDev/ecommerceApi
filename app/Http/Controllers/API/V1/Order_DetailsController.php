@@ -28,10 +28,10 @@ class Order_DetailsController extends Controller
             return response()->json(['message' => 'no product with id ' . $request->product_id], 404);
 
         $request->validate([
-            'order_id'   => 'reqiured|exists:orders,id',
-            'product_id' => 'reqiured|exists:products,id',
-            'quantity'   => 'reqiured|integer|min:1|max:' . $product->stock,
-            'price'      => 'reqiured|decimal',
+            'order_id'   => 'required|exists:orders,id',
+            'product_id' => 'required|exists:products,id',
+            'quantity'   => 'required|integer|min:1|max:' . $product->stock,
+            'price'      => 'required|decimal:2',
         ]);
 
         $new_order_detail = Order_Details::create([
